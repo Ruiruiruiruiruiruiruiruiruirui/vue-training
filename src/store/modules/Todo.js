@@ -12,8 +12,10 @@ const TodoModule = {
     add(state, task) {
       const newTask = {}
 
-      newTask[Object.keys(state.todoList).length + 1] = {
-        id: Object.keys(state.todoList).length + 1,
+      const lastIndex = parseInt(Object.keys(state.todoList)[Object.keys(state.todoList).length - 1])
+
+      newTask[lastIndex + 1] = {
+        id: lastIndex + 1,
         content: task,
         checked: false,
       }
@@ -45,7 +47,6 @@ const TodoModule = {
       TodoModuleAPIs.TodoAppFetch().then(json => {
         commit('initStore', json)
       })
-
     },
   },
   getters: {},
