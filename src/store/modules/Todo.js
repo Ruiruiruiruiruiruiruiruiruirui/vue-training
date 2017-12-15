@@ -2,26 +2,11 @@
  * Created by Rui on 15/12/17.
  */
 import _ from 'lodash'
+import { TodoModuleAPIs } from './../../api'
 
 const TodoModule = {
   state: {
-    todoList: {
-      1: {
-        id: '1',
-        content: 'item 1',
-        checked: false,
-      },
-      2: {
-        id: '2',
-        content: 'item 2',
-        checked: true,
-      },
-      3: {
-        id: '3',
-        content: 'item 3',
-        checked: false,
-      },
-    },
+    todoList: {},
   },
   mutations: {
     add(state, task) {
@@ -37,9 +22,16 @@ const TodoModule = {
         ...state.todoList,
         ...newTask
       }
+
+      TodoModuleAPIs.TodoAppStore(state.todoList)
     },
     remove(state, id) {
       state.todoList = _.omit(state.todoList, id)
+
+      TodoModuleAPIs.TodoAppStore(state.todoList)
+    },
+    initStore(state, payload) {
+      state.todoList = payload
     },
   },
   actions: {
@@ -48,7 +40,13 @@ const TodoModule = {
     },
     TodoRemove({ commit }, id){
       commit('remove', id)
-    }
+    },
+    InitTodoStore({ commit }){
+      TodoModuleAPIs.TodoAppFetch().then(json => {
+        commit('initStore', json)
+      })
+
+    },
   },
   getters: {},
 }

@@ -17,6 +17,9 @@
 
   export default {
     name: 'todoApp',
+    created() {
+      this.$store.dispatch('InitTodoStore')
+    },
     data() {
       return {
         task: '',
