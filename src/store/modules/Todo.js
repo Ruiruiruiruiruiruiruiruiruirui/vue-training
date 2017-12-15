@@ -41,8 +41,11 @@ const TodoModule = {
     TodoRemove({ commit }, id){
       commit('remove', id)
     },
-    InitTodoStore({ commit }, payload){
-      commit('initStore', payload)
+    InitTodoStore({ commit }){
+      TodoModuleAPIs.TodoAppFetch().then(json => {
+        commit('initStore', json)
+      })
+
     },
   },
   getters: {},

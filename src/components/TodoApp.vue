@@ -14,14 +14,11 @@
 
 <script>
   import _ from 'lodash';
-  import { TodoModuleAPIs } from './../api'
 
   export default {
     name: 'todoApp',
     created() {
-      TodoModuleAPIs.TodoAppFetch().then(json => {
-        this.$store.dispatch('InitTodoStore', json)
-      })
+      this.$store.dispatch('InitTodoStore')
     },
     data() {
       return {
