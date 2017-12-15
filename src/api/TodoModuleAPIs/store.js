@@ -4,7 +4,7 @@
 import axios from 'axios'
 
 export default (payload) =>
-  axios.post('http://localhost:8082/todo/store', {
+  axios.post('https://vue-training-node.herokuapp.com/todo/store', {
     payload
   }).then(response => response.data)
 

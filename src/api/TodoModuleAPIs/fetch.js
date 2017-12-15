@@ -4,6 +4,6 @@
 import axios from 'axios'
 
 export default () =>
-  axios.get('http://localhost:8082/todo/fetch')
+  axios.get('https://vue-training-node.herokuapp.com/todo/fetch')
   .then(response => response.data)
 
